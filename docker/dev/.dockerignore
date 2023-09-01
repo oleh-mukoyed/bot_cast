@@ -1,0 +1,7 @@
+*
+!/server/
+!/shared/
+/server/node_modules
+/server/npm-debug.log
+/server/dist
+/server/test

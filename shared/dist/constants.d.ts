@@ -1,0 +1,50 @@
+export declare const EVENTS: {
+    ELECTRON_STORE_GET: string;
+    ELECTRON_STORE_SET: string;
+    LINK_WITH_TELEGRAM: string;
+    SERVER_CONNECTED: string;
+    BOT_STAGE_CHANGED: string;
+    MEDIA_STATE: string;
+    CONNECT_TO_DEVICE: string;
+    DISCONNECT_FROM_DEVICE: string;
+    DEVICE_CONNECTED: string;
+    DEVICE_CONNECTION_ERROR: string;
+    DEVICE_DISCONNECTED: string;
+    DEVICE_DISCONNECTED_ERROR: string;
+    CAST_STARTED: string;
+    CAST_START_ERROR: string;
+    CAST_STOPPED: string;
+    CAST_STOP_ERROR: string;
+    SUBTITLES_REMOVED: string;
+    SUBTITLES_SHOWED: string;
+    SUBTITLE_CHANGE_FONT_SCALE: string;
+    GET_DEVICES: string;
+    CAST_LOCAL_FILE: string;
+    PLAY_LOCAL_FILE: string;
+    PAUSE_LOCAL_FILE: string;
+    STOP_CAST_LOCAL_FILE: string;
+    SERVER_ON_CONNECTION: string;
+    SOCKET_ON_CONNECT: string;
+    SOCKET_ON_DISCONNECT: string;
+    SOCKET_ON_CONNECT_ERROR: string;
+    COMMAND: string;
+    TELEGRAM_ID: string;
+    STAGE: string;
+};
+export declare const STORE_KEYS: {
+    SERVER_CONNECTED: string;
+    LINK_WITH_TELEGRAM: string;
+    TELEGRAM_ID: string;
+    ID: string;
+};
+export type MediaState = "IDLE" | "PLAYING" | "BUFFERING" | "PAUSED" | "CONNECTION_SCREEN";
+export type MediaEventsCallBack = "RENDERER" | "MAIN";
+export declare const ALLOWED_FILE_TYPES: string[];
+export declare const ALLOWED_FILE_TYPES_MIME: string[];
+export declare const WINDOW_RESOLUTION: {
+    WIDTH: number;
+    HEIGHT: number;
+    WIDTH_DEV: number;
+    HEIGHT_DEV: number;
+};
+//# sourceMappingURL=constants.d.ts.map

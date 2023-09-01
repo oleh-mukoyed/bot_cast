@@ -1,0 +1,17 @@
+.vscode
+
+**/node_modules
+
+*.env*
+
+/server/dist
+/server/test
+/server/**/*.db
+
+/client/dist
+/client/logs
+/client/out
+
+/docker/prod
+
+/docker/dev/pgdata_dev

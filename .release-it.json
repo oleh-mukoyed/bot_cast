@@ -1,0 +1,20 @@
+{
+  "plugins": {
+    "@release-it-plugins/workspaces": {
+      "skipChecks": true
+    }
+  },
+  "npm": false,
+  "git": {
+    "changelog": "npx auto-changelog --stdout --commit-limit false -u --template https://raw.githubusercontent.com/release-it/release-it/main/templates/changelog-compact.hbs"
+  },
+  "hooks": {
+    "after:bump": "yarn client:build:win && npx auto-changelog -p"
+  },
+  "github": {
+    "release": true,
+    "assets": [
+      "client/dist/${name}-${version}.exe"
+    ]
+  }
+}

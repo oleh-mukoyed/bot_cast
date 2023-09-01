@@ -1,0 +1,58 @@
+@tailwind base;
+
+/*
+light:
+bg-base-100 -> bg-base-200
+hover:text-primary-500
+hover:text-base-100
+
+dark:
+dark:bg-d_base-50 -> dark:bg-d_base-200
+hover:text-d_primary-200
+*/
+
+@layer base {
+  html.dark {
+    @apply text-d_base-900;
+  }
+
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    @apply bg-base-100;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    @apply bg-base-200;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    @apply bg-base-200;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-500;
+  }
+
+  .dark ::-webkit-scrollbar-track {
+    @apply bg-d_base-200;
+  }
+
+  .dark ::-webkit-scrollbar {
+    @apply bg-d_base-50;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-d_base-50;
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-200;
+  }
+}
+
+@tailwind components;
+@tailwind utilities;

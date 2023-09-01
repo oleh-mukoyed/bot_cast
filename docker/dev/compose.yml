@@ -1,0 +1,33 @@
+services:
+  db_dev:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    container_name: postgres_dev
+    volumes:
+      - ./pgdata_dev:/var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT_INNER}"
+    networks:
+      - bot_cast_dev
+
+  pgadmin_dev:
+    image: dpage/pgadmin4
+    restart: always
+    container_name: nest-pgadmin4_dev
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "${PGADMIN_PORT}:${PGADMIN_PORT_INTERNAL}"
+    depends_on:
+      - db_dev
+    networks:
+      - bot_cast_dev
+
+networks:
+  bot_cast_dev:
+    driver: bridge

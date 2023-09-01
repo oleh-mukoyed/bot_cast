@@ -1,0 +1,46 @@
+{
+    "name": "bot_cast",
+    "version": "1.0.6",
+    "author": "Oleh Mukoyed",
+    "homepage": "",
+    "private": true,
+    "license": "UNLICENSED",
+    "repository": "https://github.com/oleh-mukoyed/bot_cast.git",
+    "scripts": {
+        "server:dev": "docker compose -f ./docker/dev/compose.yml up -d && yarn workspace @bot_cast/server start:dev",
+        "server:dev:rebuild": "docker compose -f ./docker/dev/compose.yml build --no-cache && yarn server:dev",
+        "client:dev": "yarn workspace @bot_cast/client dev",
+        "client:build:win": "yarn workspace @bot_cast/client build:win",
+        "server:prod": "docker compose -f ./docker/prod/compose.yml up -d",
+        "server:prod:rebuild": "docker compose -f ./docker/prod/compose.yml build --no-cache && yarn server:prod",
+        "server:prod:rebuild:container": "docker compose -f ./docker/prod/compose.yml up -d --no-deps --build --",
+        "release": "dotenv release-it",
+        "commit": "git-cz"
+    },
+    "config": {
+        "commitizen": {
+            "path": "cz-conventional-changelog"
+        }
+    },
+    "workspaces": {
+        "packages": [
+            "client",
+            "server",
+            "shared"
+        ],
+        "nohoist": [
+            "**/electron",
+            "**/electron-builder",
+            "**/electron-vite",
+            "**/vite"
+        ]
+    },
+    "devDependencies": {
+        "@release-it-plugins/workspaces": "^4.0.0",
+        "commitizen": "^4.3.0",
+        "cz-conventional-changelog": "^3.3.0",
+        "dotenv": "^16.3.1",
+        "dotenv-cli": "^7.3.0",
+        "release-it": "^16.1.5"
+    }
+}
