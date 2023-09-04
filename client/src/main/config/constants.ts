@@ -5,10 +5,6 @@ export const constants = {
   },
   BOT: {
     BACK_BTN_NAME: 'Back',
-    CONNECTED_IMG: {
-      URL: 'https://i.postimg.cc/LHCZnZRG/connect.jpg',
-      MIME_TYPE: 'image/jpeg'
-    },
     DEFAULT_MEDIA_RECEIVER_APP_ID: 'CC1AD845'
   },
   CAST: {

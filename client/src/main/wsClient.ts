@@ -1,20 +1,14 @@
 import { Logger } from './logger'
 import { DesktopCaster } from './services/desktopCaster'
+import { HostFile } from './services/hostFile'
 import { appStore } from './settings'
 import { BotStage } from './telegram_bot/botStage'
-import { ALLOWED_FILE_TYPES_MIME, EVENTS, STORE_KEYS, prepareHostFileName } from '@bot_cast/shared'
-import address from 'address'
+import { ALLOWED_FILE_TYPES_MIME, EVENTS, STORE_KEYS } from '@bot_cast/shared'
 import { BrowserWindow, ipcMain } from 'electron'
-import express from 'express'
-import fs from 'fs'
-import { Server } from 'http'
-import mime from 'mime'
 import { nanoid } from 'nanoid'
-import path from 'path'
 import { Socket, io } from 'socket.io-client'
 
 export class WSClient {
-  private fileServer: Server | false = false
   private socket!: Socket
 
   constructor(
@@ -104,9 +98,8 @@ export class WSClient {
     })
 
     ipcMain.on(EVENTS.CAST_LOCAL_FILE, async (_, fileName) => {
-      if (this.fileServer) this.fileServer.close()
-
-      const hostedFile = (await this.hostFile(fileName)) as string
+      const host = HostFile.getInstance()
+      const hostedFile = (await host.hostFile(fileName, ALLOWED_FILE_TYPES_MIME)) as string
 
       if (!hostedFile) return
 
@@ -162,53 +155,6 @@ export class WSClient {
     }
 
     this.socket.emit(EVENTS.STAGE, data)
-  }
-
-  async hostFile(filePath: string): Promise<string | boolean> {
-    return new Promise(async (resolve, _) => {
-      try {
-        const mimeType = this.allowType(filePath)
-        if (!mimeType) resolve(false)
-
-        const app = express()
-        const port = import.meta.env.MAIN_VITE_FILE_HOST_PORT
-        const ip = address.ip('Ethernet')
-
-        const fileName = prepareHostFileName(path.basename(filePath))
-        const url = `/video/${fileName}`
-
-        app.get(url, (_, res) => {
-          const mediaPath = path.join(filePath)
-
-          const stat = fs.statSync(mediaPath)
-          const fileSize = stat.size
-          const head = {
-            'Content-Length': fileSize,
-            'Content-Type': mimeType as string
-          }
-          res.writeHead(200, head)
-          fs.createReadStream(mediaPath).pipe(res)
-        })
-
-        const server = app.listen(port, () => {
-          this.fileServer = server
-          resolve(`http://${ip}:${port}${url}`)
-        })
-      } catch (error) {
-        resolve(false)
-      }
-    })
-  }
-
-  //todo https://developers.google.com/cast/docs/reference/web_receiver/cast.framework.CastReceiverContext#canDisplayType
-  allowType(filePath: string): string | false {
-    const mimeType = mime.getType(filePath)
-
-    if (!mimeType) return false
-
-    if (ALLOWED_FILE_TYPES_MIME.indexOf(mimeType) === -1) return false
-
-    return mimeType
   }
 
   connected(): void {

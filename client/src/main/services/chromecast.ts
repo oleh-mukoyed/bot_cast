@@ -1,6 +1,8 @@
+import connectImg from '../../../resources/connect.jpg?asset'
 import { constants } from '../config/constants'
 import { Logger } from '../logger'
 import { AssociativeArray, CastDevice, CastDevices } from '../types'
+import { HostFile } from './hostFile'
 import { EVENTS, MediaEventsCallBack } from '@bot_cast/shared'
 import { CONNECTION_NS, ChromecastDevice, MEDIA_NS } from 'stratocaster'
 
@@ -13,9 +15,6 @@ export class Chromecast {
   readonly DEFAULT_MEDIA_RECEIVER_APP_ID = constants.BOT.DEFAULT_MEDIA_RECEIVER_APP_ID
 
   readonly SUBTITLES_STYLE = constants.CAST.SUBTITLES_STYLE
-
-  readonly CONNECTED_IMG = constants.BOT.CONNECTED_IMG.URL
-  readonly CONNECTED_IMG_TYPE = constants.BOT.CONNECTED_IMG.MIME_TYPE
 
   private device: ChromecastDevice | undefined = undefined
   private mediaSessionId: number | undefined = undefined
@@ -165,11 +164,13 @@ export class Chromecast {
 
       this.events()
 
+      const host = HostFile.getInstance()
+      const hostedFile = (await host.hostFile(connectImg)) as string
+
       const res = await this.sendByMediaChanel({
         type: 'LOAD',
         media: {
-          contentId: this.CONNECTED_IMG,
-          contentType: this.CONNECTED_IMG_TYPE,
+          contentId: hostedFile,
           streamType: 'BUFFERED',
           connectMedia: true
         }
