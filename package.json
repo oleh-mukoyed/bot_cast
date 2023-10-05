@@ -25,8 +25,7 @@
     "workspaces": {
         "packages": [
             "client",
-            "server",
-            "shared"
+            "server"
         ],
         "nohoist": [
             "**/electron",
