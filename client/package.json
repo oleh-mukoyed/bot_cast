@@ -19,7 +19,7 @@
     "build:linux": "electron-vite build && electron-builder --linux --config"
   },
   "dependencies": {
-    "@bot_cast/shared": "1.0.1",
+    "@bot_cast/shared": "file:./../shared",
     "@electron-toolkit/preload": "^2.0.0",
     "@electron-toolkit/utils": "^1.0.2",
     "@headlessui/react": "^1.7.17",
