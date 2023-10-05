@@ -11,7 +11,7 @@ COPY --chown=node:node ./server/src ./src
 COPY --chown=node:node ./shared ../shared
 COPY --chown=node:node ./server/prisma ./prisma
 
-RUN yarn install --production --ignore-engines
+RUN apt-get --assume-yes install yarn && apt-mark hold yarn 
 
 ENV NODE_ENV production
 
