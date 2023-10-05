@@ -1,6 +1,5 @@
 {
   "name": "@bot_cast/shared",
-  "version": "1.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
