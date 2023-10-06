@@ -57,6 +57,7 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           #envs: IMAGE_NAME,REGISTRY,{{ secrets.DIGITALOCEAN_ACCESS_TOKEN }},GITHUB_SHA
           script: |
+            echo "image - $IMAGE_NAME"
             # Login to registry
             docker login -u ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} registry.digitalocean.com
             # Stop running container
