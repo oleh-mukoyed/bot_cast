@@ -64,7 +64,7 @@ jobs:
             # Remove old container
             docker rm $(echo $IMAGE_NAME)
             # Run a new container from a new image
-            docker run -e "DATABASE_URL=${{ secrets.DATABASE_URL }}" -e "TELEGRAM_TOKEN=${{ secrets.TELEGRAM_TOKEN }}" \
+            docker run -e "DATABASE_URL=${{ secrets.DATABASE_URL }}" -e "TELEGRAM_TOKEN=${{ secrets.TELEGRAM_TOKEN }}" -e "PORT=${{ secrets.SERVER_PORT }}" \
             -d -p ${{ secrets.SERVER_PORT }}:${{ secrets.SERVER_PORT }} \
             --network bot_cast_server_bot_cast \
             --restart always \
