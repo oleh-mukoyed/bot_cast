@@ -6,6 +6,8 @@ on:
   # Triggers the workflow on push events but only for the master branch
   push:
     branches: [main]
+    paths:
+      - server/**
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -27,7 +29,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build container image
-        run: docker build --build-arg PORT=${{ secrets.SERVER_PORT }} --build-arg TELEGRAM_TOKEN=${{ secrets.TELEGRAM_TOKEN }} --build-arg DATABASE_URL=${{ secrets.DATABASE_URL }} -t $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7) .
+        run: docker build -t $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7) .
 
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
@@ -64,7 +66,9 @@ jobs:
             # Remove old container
             docker rm $(echo $IMAGE_NAME)
             # Run a new container from a new image
-            docker run -d -p ${{ secrets.SERVER_PORT }}:${{ secrets.SERVER_PORT }} -e DATABASE_URL=${{ secrets.DATABASE_URL }} \
+            docker run -e "DATABASE_URL=${{ secrets.DATABASE_URL }}" -e "TELEGRAM_TOKEN=${{ secrets.TELEGRAM_TOKEN }}" -e "PORT=${{ secrets.SERVER_PORT }}" \
+            -d -p ${{ secrets.SERVER_PORT }}:${{ secrets.SERVER_PORT }} \
+            --network bot_cast_server_bot_cast \
             --restart always \
             --name $(echo $IMAGE_NAME) \
             $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)
