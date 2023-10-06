@@ -64,7 +64,8 @@ jobs:
             # Remove old container
             docker rm $(echo $IMAGE_NAME)
             # Run a new container from a new image
-            docker run -d -p ${{ secrets.SERVER_PORT }}:${{ secrets.SERVER_PORT }} -e DATABASE_URL=${{ secrets.DATABASE_URL }} \
+            docker run -d -p ${{ secrets.SERVER_PORT }}:${{ secrets.SERVER_PORT }} \
+            --env DATABASE_URL=${{ secrets.DATABASE_URL }} \
             --restart always \
             --name $(echo $IMAGE_NAME) \
             $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)
