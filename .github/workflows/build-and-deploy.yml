@@ -57,9 +57,6 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           envs: IMAGE_NAME,REGISTRY,{{ secrets.DIGITALOCEAN_ACCESS_TOKEN }},GITHUB_SHA
           script: |
-
-            echo "image - $IMAGE_NAME"
-            
             # Login to registry
             docker login -u ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} registry.digitalocean.com
             # Stop running container
@@ -67,7 +64,7 @@ jobs:
             # Remove old container
             docker rm $(echo $IMAGE_NAME)
             # Run a new container from a new image
-            docker run -d -p ${{ secrets.SERVER_PORT }}:${{ secrets.SERVER_PORT }} \
+            docker run -d -p ${{ secrets.SERVER_PORT }}:${{ secrets.SERVER_PORT }} -e DATABASE_URL=${{ secrets.DATABASE_URL }} \
             --restart always \
             --name $(echo $IMAGE_NAME) \
             $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)
