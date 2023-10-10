@@ -1,6 +1,6 @@
 {
   "name": "@bot_cast/client",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An Electron application with React and TypeScript",
   "main": "./out/main/index.js",
   "license": "UNLICENSED",
@@ -19,7 +19,7 @@
     "build:linux": "electron-vite build && electron-builder --linux --config"
   },
   "dependencies": {
-    "@bot_cast/shared": "^1.0.2",
+    "@bot_cast/shared": "^1.0.3",
     "@electron-toolkit/preload": "^2.0.0",
     "@electron-toolkit/utils": "^1.0.2",
     "@headlessui/react": "^1.7.17",
