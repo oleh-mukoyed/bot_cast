@@ -11,6 +11,7 @@ COPY --chown=node:node ./server/src ./src
 COPY --chown=node:node ./shared ../shared
 COPY --chown=node:node ./server/prisma ./prisma
 
+RUN yarn remove @bot_cast/shared
 RUN yarn add file:../shared
 RUN yarn install
 
