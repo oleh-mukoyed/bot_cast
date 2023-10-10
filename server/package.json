@@ -8,6 +8,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "npx nest start",
     "start:dev": "npx nest start --watch",
+    "start:migrate:dev": "npx prisma migrate dev && npx nest start --watch",
     "start:debug": "npx nest start --debug --watch",
     "start:prod": "node dist/main",
     "start:migrate:prod": "npx prisma migrate deploy && yarn start:prod",

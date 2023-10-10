@@ -9,7 +9,7 @@
     "scripts": {
         "preinstall": "yarn shared:build",
         "shared:build": "yarn workspace @bot_cast/shared build",
-        "server:dev": "docker compose -f ./docker/dev/compose.yml up -d && yarn workspace @bot_cast/server start:dev",
+        "server:dev": "docker compose -f ./docker/dev/compose.yml up -d && yarn workspace @bot_cast/server start:migrate:dev",
         "server:dev:rebuild": "docker compose -f ./docker/dev/compose.yml build --no-cache && yarn server:dev",
         "client:dev": "yarn workspace @bot_cast/client dev",
         "client:build:win": "yarn workspace @bot_cast/client build:win",

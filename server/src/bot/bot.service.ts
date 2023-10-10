@@ -21,7 +21,13 @@ export class BotService {
       const client = this.getClient(telegramId, text);
 
       if (!client) {
-        throw new Error('Please, enter valid auth code.');
+        const dbUser = await this.userService.userUnique({
+          telegramId: telegramId,
+        });
+        const msg = dbUser
+          ? 'Please, start BotCast app.'
+          : 'Please, enter valid auth code.';
+        throw new Error(msg);
       }
 
       const socket = this.commandsGateway.server.sockets.sockets.get(
