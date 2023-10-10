@@ -1,5 +1,6 @@
 import icon from '../../resources/icon.png?asset'
 import { Logger } from './logger'
+import { Update } from './update'
 import { WSClient } from './wsClient'
 import { WINDOW_RESOLUTION } from '@bot_cast/shared'
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
@@ -13,6 +14,7 @@ function createWindow(): BrowserWindow {
     height: is.dev ? WINDOW_RESOLUTION.HEIGHT_DEV : WINDOW_RESOLUTION.HEIGHT,
     show: false,
     autoHideMenuBar: true,
+    title: `BotCast ${app.getVersion()}`,
     //...(process.platform === 'linux' ? { icon } : {}),
     icon: icon,
     webPreferences: {
@@ -64,6 +66,10 @@ app.whenReady().then(async () => {
   })
 
   const win = createWindow()
+
+  const update = new Update(win)
+  update.checkForUpdates()
+
   const client = new WSClient(win)
 
   let castDisconnected = false

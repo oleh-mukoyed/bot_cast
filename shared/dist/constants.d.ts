@@ -30,6 +30,12 @@ export declare const EVENTS: {
     COMMAND: string;
     TELEGRAM_ID: string;
     STAGE: string;
+    UPDATE_CHECKING: string;
+    UPDATE_AVAILABLE: string;
+    UPDATE_NOT_AVAILABLE: string;
+    UPDATE_PROGRESS: string;
+    UPDATE_DOWNLOADED: string;
+    UPDATE_ERROR: string;
 };
 export declare const STORE_KEYS: {
     SERVER_CONNECTED: string;

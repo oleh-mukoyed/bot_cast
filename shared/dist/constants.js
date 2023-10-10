@@ -33,6 +33,12 @@ exports.EVENTS = {
     COMMAND: "command",
     TELEGRAM_ID: "telegram-id",
     STAGE: "stage",
+    UPDATE_CHECKING: "checking-for-update",
+    UPDATE_AVAILABLE: "update-available",
+    UPDATE_NOT_AVAILABLE: "update-not-available",
+    UPDATE_PROGRESS: "download-progress",
+    UPDATE_DOWNLOADED: "update-downloaded",
+    UPDATE_ERROR: "error",
 };
 exports.STORE_KEYS = {
     SERVER_CONNECTED: "serverConnected",

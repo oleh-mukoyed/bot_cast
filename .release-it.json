@@ -14,7 +14,9 @@
   "github": {
     "release": true,
     "assets": [
-      "client/dist/${name}-${version}.exe"
+      "client/dist/*${version}.exe",
+      "client/dist/*${version}.exe.blockmap",
+      "client/dist/latest.yml"
     ]
   }
 }

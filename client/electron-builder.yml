@@ -1,5 +1,5 @@
-appId: com.electron.app
-productName: bot_cast
+appId: olehm.BotCast
+productName: BotCast
 directories:
   buildResources: build
 files:
@@ -12,16 +12,19 @@ files:
 asarUnpack:
   - resources/**
 afterSign: build/notarize.js
+asar: true
 win:
-  executableName: bot_cast
+  executableName: BotCast
   artifactName: ${productName}-${version}.${ext}
   target:
-    - portable
+    - nsis
+  #icon: 'build/icon.ico'
 nsis:
-  artifactName: ${name}-${version}-setup.${ext}
-  shortcutName: ${productName}
-  uninstallDisplayName: ${productName}
+  #artifactName: ${name}-${version}-setup.${ext}
+  #shortcutName: ${productName}
+  #uninstallDisplayName: ${productName}
   createDesktopShortcut: always
+  perMachine: true
 mac:
   entitlementsInherit: build/entitlements.mac.plist
   extendInfo:
@@ -41,6 +44,7 @@ linux:
 appImage:
   artifactName: ${name}-${version}.${ext}
 npmRebuild: false
-# publish:
-#   provider: github
-#   releaseType: release
+publish:
+  provider: github
+  repo: oleh-mukoyed/bot_cast
+  owner: oleh-mukoyed
