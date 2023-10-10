@@ -25,18 +25,17 @@ With Electron posible to build it for MacOs and Linux as well, but I use Windows
 ## How to use
 - Download app from [Releases](https://github.com/oleh-mukoyed/bot_cast/releases/latest)
 - In first run you need to connect app with telegram bot
-![image](https://github.com/oleh-mukoyed/bot_cast/assets/8282733/d2c1de30-d248-4bb3-828d-5a92df3f45cc)
-![image](https://github.com/oleh-mukoyed/bot_cast/assets/8282733/c13c13ff-bf3a-43fb-a5ea-033c408d3792)
+![image](https://github.com/oleh-mukoyed/bot_cast/assets/8282733/724c1775-ee11-4212-a7e8-0487fdbf7ff1)
 - Rdy to use!!!
 
 
 
 ## Screenshots
 windows app:<br>
-![image](https://github.com/oleh-mukoyed/bot_cast/assets/8282733/de2a49a5-7501-43e6-ba80-ed6eb9b2214f)
-![image](https://github.com/oleh-mukoyed/bot_cast/assets/8282733/5514769c-8bbd-4e14-98f0-ea843799eeee)
+![image](https://github.com/oleh-mukoyed/bot_cast/assets/8282733/49d3ddff-2e42-4f58-8d20-fec6724a9f95)
+![image](https://github.com/oleh-mukoyed/bot_cast/assets/8282733/0643fdc6-5e5e-46c8-b798-ab5425d02141)
 
 telegram bot:<br>
-![image](https://github.com/oleh-mukoyed/bot_cast/assets/8282733/9eb84858-6802-47fa-8b0d-b9ae6edc1c01)
-![image](https://github.com/oleh-mukoyed/bot_cast/assets/8282733/9656fe4a-b3de-4aad-beba-170b91974b2d)
-![image](https://github.com/oleh-mukoyed/bot_cast/assets/8282733/4207ce69-ec75-4865-baf9-17ede4a61aa8)
+![image](https://github.com/oleh-mukoyed/bot_cast/assets/8282733/26f40c8c-19d9-4702-b9d7-08b6d83dc872)
+![image](https://github.com/oleh-mukoyed/bot_cast/assets/8282733/255ccce3-242b-4069-9b30-f47a3365949f)
+
