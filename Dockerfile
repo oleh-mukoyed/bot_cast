@@ -12,8 +12,8 @@ COPY --chown=node:node ./shared ../shared
 COPY --chown=node:node ./server/prisma ./prisma
 COPY --chown=node:node replace_dependency.sh ./
 
-#RUN chmod +x replace_dependency.sh
 RUN chmod +x ./replace_dependency.sh
+RUN ./replace_dependency.sh
 
 RUN yarn install
 
