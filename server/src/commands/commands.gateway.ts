@@ -33,7 +33,7 @@ export class CommandsGateway {
         socket,
       )) as SocketClient;
 
-      this.logger.log('clientData: ', clientData);
+      //this.logger.log('clientData: ', clientData);
 
       if (!clientData) {
         this.logger.error('Client not found');
