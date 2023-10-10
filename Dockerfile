@@ -10,10 +10,9 @@ COPY --chown=node:node ./server/tsconfig*.json ./
 COPY --chown=node:node ./server/src ./src
 COPY --chown=node:node ./shared ../shared
 COPY --chown=node:node ./server/prisma ./prisma
-COPY --chown=node:node ./replace_dependency.sh ./
+COPY --chown=node:node ./replace_dependency.js ./
 
-RUN chmod +x replace_dependency.sh
-RUN ./replace_dependency.sh
+RUN node ./replace_dependency.js
 
 RUN yarn install
 
