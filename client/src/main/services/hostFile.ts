@@ -25,9 +25,7 @@ export class HostFile {
       try {
         if (this.fileServer) this.fileServer.close()
 
-        console.log('filePath :', filePath)
         const mimeType = this.getMimeIfAllowed(filePath, allowedTypes)
-        console.log('mimeType :', mimeType)
         if (!mimeType) resolve(false)
 
         const app = express()

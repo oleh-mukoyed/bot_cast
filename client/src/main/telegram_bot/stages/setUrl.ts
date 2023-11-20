@@ -10,7 +10,7 @@ export class SetUrl extends Stage {
     super()
     this.allowStages = [Disconnect.code]
     this.buttons = [Disconnect.stageName]
-    this.backBtn = false
+    this.backBtn = true
     this.prevStage = Connected.code
     this.text =
       'Enter a link to a site with a series or movie. ' +

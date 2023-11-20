@@ -108,7 +108,6 @@ export function ConnectProvider({ children }: { children: ReactNode }): JSX.Elem
     })
 
     ipcRenderer.on(EVENTS.BOT_STAGE_CHANGED, (_, msg) => {
-      console.log('ipcRenderer stageChanged msg.text :', msg.text)
       //message('info', msg.text)
     })
 

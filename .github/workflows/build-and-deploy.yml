@@ -40,8 +40,8 @@ jobs:
       - name: Log in to DigitalOcean Container Registry with short-lived credentials
         run: doctl registry login --expiry-seconds 600
 
-      - name: Remove all old images
-        run: if [ ! -z "$(doctl registry repository list | grep "$(echo $IMAGE_NAME)")" ]; then doctl registry repository delete-manifest $(echo $IMAGE_NAME) $(doctl registry repository list-tags $(echo $IMAGE_NAME) | grep -o "sha.*") --force; else echo "No repository"; fi
+      # - name: Remove all old images
+      #   run: if [ ! -z "$(doctl registry repository list | grep "$(echo $IMAGE_NAME)")" ]; then doctl registry repository delete-manifest $(echo $IMAGE_NAME) $(doctl registry repository list-tags $(echo $IMAGE_NAME) | grep -o "sha.*") --force; else echo "No repository"; fi
 
       - name: Push image to DigitalOcean Container Registry
         run: docker push $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)
@@ -62,10 +62,16 @@ jobs:
           script: |
             # Login to registry
             docker login -u ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} registry.digitalocean.com
+
             # Stop running container
             docker stop $(echo $IMAGE_NAME)
+
             # Remove old container
             docker rm $(echo $IMAGE_NAME)
+
+            # Remove old images
+            docker rmi $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)
+
             # Run a new container from a new image
             docker run -e "DATABASE_URL=${{ secrets.DATABASE_URL }}" -e "TELEGRAM_TOKEN=${{ secrets.TELEGRAM_TOKEN }}" -e "PORT=${{ secrets.SERVER_PORT }}" \
             -d -p ${{ secrets.SERVER_PORT }}:${{ secrets.SERVER_PORT }} \
